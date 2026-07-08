@@ -1,0 +1,38 @@
+account:
+  starting_capital: 1000000.0  # INR
+
+trading:
+  entry_start: "09:30"
+  entry_end: "14:30"
+  exit_time: "15:20"
+  max_trades_per_day: 3
+  max_consecutive_losses: 3
+  daily_loss_limit_pct: 0.02  # stop trading if daily loss > 2%
+  risk_per_account_pct: 0.01  # 1% per trade
+  max_one_trade_per_symbol: true
+
+data:
+  daily_dir: "./data/daily"        # daily OHLCV csv files per symbol
+  intraday_dir: "./data/5min"      # 5-min OHLCV csv files per symbol
+  iv_dir: "./data/iv"              # historical IV series per symbol
+
+options:
+  dte_min: 2                       # DTE >= 2
+  use_next_week_if_dte1: true
+  iv_rank_window_days: 90
+  iv_rank_threshold: 70            # skip if IV Rank >= 70
+
+filters:
+  adv_value_min_inr: 1000000000    # 100 Crore = 1000000000 INR
+  avg_option_oi_min: 10000
+  max_bid_ask_spread_pct: 0.02
+
+indicators:
+  atr_days: 20                     # 20 trading days ATR (daily candles)
+  breakout_prev_candles: 5         # previous 5 completed 5-min candles
+  volume_multiplier: 1.5
+  atr_momentum_multiplier: 1.5
+
+position:
+  lot_size_default: 1              # set per symbol normally
+  contract_multiplier_default: 1
